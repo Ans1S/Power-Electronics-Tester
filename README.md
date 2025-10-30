@@ -211,12 +211,10 @@ A complete automated testing ecosystem consisting of:
 **Purpose:** Portable field-deployable tester for 15W CCCV converters with standalone operation without database connectivity.
 
 **Test Sequence:**
-- **Voltage Selection:** Button-based menu to select test voltage (10V, 24V, 48V for CCCV variants)
 - **Current Application:** External pin provides constant current load based on selected voltage
 - **UART Communication:** UART interface for configuration during test setup and verification during test execution
 - **LED Status Monitoring:** Confirms output status indicator operation during test
 - **Multi-Voltage Testing:** Tests 2-3 voltage points per DUT (e.g., 5V, 12V, 24V for full characterization)
-- **Local Logging:** Measurements stored in on-device flash memory, accessible via UART download for later database import
 - **Standalone Results:** Test pass/fail determination made locally without database connectivity
 
 **Key Metrics:** Standalone reliability (no network dependency), voltage accuracy (±2%), local data storage capacity, UART communication robustness.
@@ -249,7 +247,7 @@ A complete automated testing ecosystem consisting of:
 </div>
 
 - **Per-Unit Data Access:** Every customer can scan the QR-code on their purchased PSU to access the complete test report and measurement history for their specific unit
-- **Lifetime Traceability:** Manufacturing date, test conditions, voltage/current profiles tested, thermal behavior, and pass/fail status permanently linked to the physical product
+- **Lifetime Traceability:** Manufacturing date, test conditions, voltage/current profiles tested, and pass/fail status permanently linked to the physical product
 - **Quality Verification:** Customers verify the exact test parameters their unit underwent before leaving the factory
 - **Batch Analysis:** Production teams identify quality trends across manufacturing batches and correlate failures to specific design revisions
 - **Audit Trail:** Complete operational history supports product warranty claims and regulatory compliance documentation
