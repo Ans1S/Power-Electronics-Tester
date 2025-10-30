@@ -4,7 +4,7 @@
 
 <br />
 <div align="center">
-  <img src="Images/DCC48XX_CCCV48XX.png?raw=true" alt="Power Electronics Tester Suite" width="900" height="600">
+  <img src="Images/DCC48XX_CCCV48XX.png?raw=true" alt="Power Electronics Tester Suite" width="800" height="450">
   <p align="center">
     <strong>Comprehensive automated validation framework for 6+ power supply topologies with precision measurement and quality tracking</strong>
   </p>
@@ -96,12 +96,12 @@ Hardware Layer (All Testers Share):
 ### Software Stack
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
-| **Application** | C (Embedded) | Test orchestration, state machine, command processing |
-| **Driver** | Direct Hardware Interface | ADC/DAC control, I2C communication, LED monitoring |
-| **Control Algorithm** | Real-Time Feedback Loop | 16kHz cycle time, tolerance-based validation |
-| **Configuration** | INI Files | Mode-specific tolerances, test parameters, limits |
+| **Application** | C (Embedded) | Test orchestration, state machine, UI thread management |
+| **Driver** | Direct Hardware Interface | ADC/DAC control, I2C sensor communication, LED monitoring |
+| **Measurement** | Sampling & Filtering | Voltage/current acquisition with averaging and calibration |
+| **Configuration** | INI Files | Mode-specific tolerances, test parameters, sensor limits |
 | **Database** | MySQL Backend | Persistent storage of all measurements and test results |
-| **Communication** | UART/USB | Status reporting and result upload |
+| **Communication** | UART/USB | Status reporting and result upload to database |
 
 ---
 
@@ -109,7 +109,7 @@ Hardware Layer (All Testers Share):
 
 ### **1️⃣ ACPD Tester** - AC/DC Power Delivery Validation
 <div align="center">
-  <img src="Images/ACPD.png?raw=true" alt="ACPD Tester" width="600" height="400">
+  <img src="Images/ACPD.png?raw=true" alt="ACPD Tester" width="540" height="360">
 </div>
 
 **Purpose:** Comprehensive testing of AC/DC power delivery topologies for universal mains compatibility.
@@ -131,11 +131,11 @@ Hardware Layer (All Testers Share):
   <table>
     <tr>
       <td align="center">
-        <img src="Images/HDR20.png?raw=true" alt="HDR20 Tester Unit" width="450" height="350">
+        <img src="Images/HDR20.png?raw=true" alt="HDR20 Tester Unit" width="400" height="300">
         <p><strong>Tester Unit</strong></p>
       </td>
       <td align="center">
-        <img src="Images/HDR20_dut.png?raw=true" alt="HDR20 Device Under Test" width="450" height="350">
+        <img src="Images/HDR20_dut.png?raw=true" alt="HDR20 Device Under Test" width="400" height="300">
         <p><strong>Device Under Test</strong></p>
       </td>
     </tr>
@@ -161,11 +161,11 @@ Hardware Layer (All Testers Share):
   <table>
     <tr>
       <td align="center">
-        <img src="Images/DCC48XX_CCCV48XX.png?raw=true" alt="DCC48XX & CCCV48XX Tester" width="450" height="350">
+        <img src="Images/DCC48XX_CCCV48XX.png?raw=true" alt="DCC48XX & CCCV48XX Tester" width="400" height="300">
         <p><strong>Tester Frontend</strong></p>
       </td>
       <td align="center">
-        <img src="Images/DCC48XX_CCCV48XX_dut.png?raw=true" alt="Device Under Test" width="450" height="350">
+        <img src="Images/DCC48XX_CCCV48XX_dut.png?raw=true" alt="Device Under Test" width="400" height="300">
         <p><strong>Device Under Test</strong></p>
       </td>
     </tr>
@@ -193,11 +193,11 @@ Hardware Layer (All Testers Share):
   <table>
     <tr>
       <td align="center">
-        <img src="Images/DP-PD_USB-C-3A.png?raw=true" alt="DC-PD & USB-C Tester" width="450" height="350">
+        <img src="Images/DP-PD_USB-C-3A.png?raw=true" alt="DC-PD & USB-C Tester" width="400" height="300">
         <p><strong>Tester Unit</strong></p>
       </td>
       <td align="center">
-        <img src="Images/USB-C-3A_dut_testing.png?raw=true" alt="USB-C Testing" width="450" height="350">
+        <img src="Images/USB-C-3A_dut_testing.png?raw=true" alt="USB-C Testing" width="400" height="300">
         <p><strong>Active Testing</strong></p>
       </td>
     </tr>
@@ -207,7 +207,7 @@ Hardware Layer (All Testers Share):
 **Purpose:** Specialized validation of USB Power Delivery profiles and USB-C 3A capable supplies with compliance verification.
 
 **Test Sequence:**
-- **PD Handshake Verification:** Validates correct USB Power Delivery negotiation sequence (5V → 9V → 15V → 20V profiles)
+- **PD Handshake Verification:** Validates correct USB Power Delivery 3.0 negotiation sequence (5V → 9V → 15V → 20V profiles)
 - **3A Profile Validation:** Confirms 3A capability at all supported voltage levels with ±2% accuracy
 - **Thermal Protection:** Monitors temperature during sustained 3A operation and validates shutdown threshold
 - **Overcurrent Response:** Tests USB-C current limiting and protection mechanisms
@@ -223,11 +223,11 @@ Hardware Layer (All Testers Share):
   <table>
     <tr>
       <td align="center">
-        <img src="Images/DCP48M_tester.png?raw=true" alt="DCP48M Tester Setup" width="450" height="350">
+        <img src="Images/DCP48M_tester.png?raw=true" alt="DCP48M Tester Setup" width="400" height="300">
         <p><strong>Tester Configuration</strong></p>
       </td>
       <td align="center">
-        <img src="Images/DCP48M_while_testing.png?raw=true" alt="DCP48M During Testing" width="450" height="350">
+        <img src="Images/DCP48M_while_testing.png?raw=true" alt="DCP48M During Testing" width="400" height="300">
         <p><strong>Testing in Progress</strong></p>
       </td>
     </tr>
@@ -252,12 +252,11 @@ Hardware Layer (All Testers Share):
 ### Measurement Performance
 | Parameter | Specification | Implementation |
 |-----------|---------------|-----------------|
-| **Voltage Measurement** | ±2% Accuracy | 12-bit ADC + 16-sample averaging @ 1MHz |
+| **Voltage Measurement** | ±2% Accuracy | 12-bit ADC with sampling |
 | **Current Measurement** | ±2% Accuracy | Shunt measurement + differential amplification |
 | **Thermal Measurement** | ±1°C | Integrated thermistor sensors via ADC |
-| **Control Loop Frequency** | 16kHz | Hardware timer with DMA synchronization |
 | **Tolerance Validation** | Mode-specific | INI-based configuration per PSU topology |
-| **Test Duration** | Configurable | Typical: 5-30 minutes per unit |
+| **Test Duration** | Configurable | 1-20 seconds per unit (DUT dependent) |
 | **Result Traceability** | UUID per run | Unique identifier with QR-code encoding |
 
 ### Database Integration
@@ -303,35 +302,7 @@ Hardware Layer (All Testers Share):
 
 ---
 
-### **2️⃣ Precision Measurement at 1MHz Sampling Rate**
-
-**Challenge:** Achieve ±2% measurement accuracy in an embedded system with limited ADC resolution and electrical noise.
-
-**Solution:**
-- **16-Sample Averaging:** Consecutive samples at 1MHz with statistical filtering
-- **Differential Amplification:** Voltage and current sensing via precision op-amps
-- **ADC Calibration:** Offset and gain correction stored in EEPROM
-- **DMA-Based Acquisition:** Non-blocking parallel transfer while CPU handles control logic
-
-**Result:** Effective resolution increased from 12-bit to ~14-bit equivalent through averaging and calibration.
-
----
-
-### **3️⃣ Real-Time Feedback Control at 16kHz**
-
-**Challenge:** Implement tight control loops for dynamic load adjustment while capturing accurate measurements and logging data.
-
-**Solution:**
-- **Hardware Timer Interrupt:** Precise 62.5µs cycle time (16kHz) independent of software execution
-- **Cascaded Control:** Voltage and current controllers select most restrictive value (CC/CV logic)
-- **DMA Synchronization:** ADC results automatically transferred to memory without CPU intervention
-- **Interrupt Handlers:** Structured priority-based interrupt servicing (timer → ADC → UART)
-
-**Why It Matters:** Demonstrates mastery of real-time embedded control combining precision measurement with dynamic adjustment.
-
----
-
-### **4️⃣ Comprehensive Traceability via QR-Code**
+### **3️⃣ Comprehensive Traceability via QR-Code**
 
 **Challenge:** Enable production line users to track test results via simple QR-code scanning without requiring technical knowledge.
 
@@ -346,7 +317,7 @@ Hardware Layer (All Testers Share):
 
 ---
 
-### **5️⃣ Production-Ready Architecture**
+### **4️⃣ Production-Ready Architecture**
 
 **Challenge:** Ensure test infrastructure reliably validates thousands of units without manual intervention or frequent recalibration.
 
@@ -378,10 +349,9 @@ This project demonstrates comprehensive expertise in:
 
 | Competency | Implementation |
 |---|---|
-| **Embedded Systems Design** | Multi-threaded firmware, state machines, real-time control loops |
-| **Precision Measurement** | ADC/DAC calibration, noise filtering, 16-sample averaging for ±2% accuracy |
-| **Real-Time Control** | 16kHz feedback loops with cascaded control logic for CC/CV regulation |
-| **Hardware Integration** | I2C sensor coordination, interrupt-driven data acquisition, DMA transfers |
+| **Embedded Systems Design** | Multi-threaded firmware, state machines, modular control logic |
+| **Precision Measurement** | ADC/DAC calibration, noise filtering for ±2% accuracy |
+| **Hardware Integration** | I2C sensor coordination, interrupt-driven data acquisition |
 | **Database Design** | MySQL schema for efficient test result storage and historical tracking |
 | **Firmware Architecture** | Configuration management, modular test functions, error handling |
 | **Production Engineering** | Traceability systems, QR-code integration, scalable test infrastructure |
@@ -395,23 +365,12 @@ This project demonstrates comprehensive expertise in:
 2. **Production Grade:** Deployed in manufacturing with proven reliability (99.8% uptime)
 3. **Traceability Integration:** Every unit has verifiable QR-code linked test history
 4. **Precision Performance:** ±2% measurement accuracy across entire operating range
-5. **Real-Time Control:** 16kHz feedback loops demonstrating advanced embedded control expertise
-6. **Database Integration:** Persistent storage enabling quality trending and batch analysis
-7. **Scalability:** Architecture supports adding new topologies without core system modification
+5. **Database Integration:** Persistent storage enabling quality trending and batch analysis
+6. **Scalability:** Architecture supports adding new topologies without core system modification
 
 ---
 
 ## 💡 Technical Highlights
-
-### Precision Feedback Control
-```
-ADC Sample (1MHz) → Average 16 Samples → PI Control Loop
-        ↓                    ↓                    ↓
-  Voltage: 48.07V    Voltage: 48.02V    Error: -0.02V
-  Current: 1.203A    Current: 1.205A    Adjustment: +1.5mV
-        ↓                    ↓                    ↓
-  DAC Output Update (16kHz cycle)
-```
 
 ### QR-Code Traceability Flow
 ```
@@ -427,26 +386,7 @@ Web Dashboard Queries MySQL
     ↓
 Test Results Displayed: ✅ PASSED
 ├── Voltage Accuracy: 48.02V ±0.2V
-├── Current: 1.205A ±2.1%
-├── Efficiency: 83.4%
-├── Thermal: +18.7°C ΔT
-└── Duration: 12m 34s
-```
-
-### Configuration Management Example
-```ini
-[CCCV4805]
-voltage_tolerance_lower_CCCV4805 = 0.03
-voltage_tolerance_upper_CCCV4805 = 0.05
-current_tolerance = 0.10
-max_attempts = 5
-last_time_us = 100000
-
-[DCC4824]
-voltage_tolerance_lower_DCC4824 = 0.02
-voltage_tolerance_upper_DCC4824 = 0.04
-current_tolerance = 0.08
-max_attempts = 3
+└── Current: 1.205A ±2.1%
 ```
 
 ---
@@ -460,7 +400,6 @@ max_attempts = 3
 - ✅ CCCV48XX Dual-Mode 48V Converters
 - ✅ DC-PD & USB-C-3A Chargers
 - ✅ DCP48M Multi-Mode 48V Systems
-- ✅ DIG-CCCV-15W Demonstration Units
 
 **Downstream (Who Uses Results):**
 - Production Quality Assurance
