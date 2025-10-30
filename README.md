@@ -4,7 +4,7 @@
 
 <br />
 <div align="center">
-  <img src="Images/DCP48M_while_testing.png?raw=true" alt="Power Electronics Tester Suite" width="600" height="400">
+  <img src="Images/DCP48M_while_testing.png?raw=true" alt="Power Electronics Tester Suite" width="800" height="600">
   <p align="center">
     <strong>Comprehensive automated validation framework for 6+ power supply topologies with precision measurement and quality tracking</strong>
   </p>
@@ -86,7 +86,7 @@ A complete automated testing ecosystem consisting of:
   <table>
     <tr>
       <td align="center">
-        <img src="Images/HDR20.png?raw=true" alt="HDR20 Tester Unit" width="300" height="200">
+        <img src="Images/HDR20.png?raw=true" alt="HDR20 Tester Unit" width="300" height="250">
         <p><strong>Tester Unit</strong></p>
       </td>
       <td align="center">
@@ -148,7 +148,7 @@ A complete automated testing ecosystem consisting of:
   <table>
     <tr>
       <td align="center">
-        <img src="Images/DP-PD_USB-C-3A.png?raw=true" alt="DC-PD & USB-C Tester" width="300" height="200">
+        <img src="Images/DP-PD_USB-C-3A.png?raw=true" alt="DC-PD & USB-C Tester" width="300" height="250">
         <p><strong>Tester Unit</strong></p>
       </td>
       <td align="center">
@@ -199,6 +199,25 @@ A complete automated testing ecosystem consisting of:
 - **Protection Margin Testing:** Validates protection thresholds and safety margins
 
 **Key Metrics:** Isolation resistance, ripple quantification, transient response time, extended reliability, protection margin.
+
+---
+
+### **6️⃣ DIG-CCCV-15W Tester** - Standalone Offline 15W Converter Validation
+<div align="center">
+  <img src="Images/DIG-CCCV-15W.png?raw=true" alt="DIG-CCCV-15W Standalone Tester" width="600" height="400">
+</div>
+
+**Purpose:** Portable field-deployable tester for 15W CCCV converters with standalone operation without database connectivity.
+
+**Test Sequence:**
+- **CC Mode Verification:** Tests 0A - 1.2A constant current output with ±2% accuracy
+- **CV Mode Verification:** Tests 10V - 60V constant voltage output with ±2% accuracy
+- **Mode Switching:** Validates seamless transition between CC/CV operating modes
+- **Full-Load Operation:** 15W continuous operation with thermal monitoring
+- **LED Status Verification:** Confirms output status indicator operation
+- **Local Logging:** Stores results locally for manual inspection or export
+
+**Key Metrics:** CC accuracy (±2%), CV accuracy (±2%), mode transition stability, thermal steady-state, standalone reliability.
 
 ---
 
