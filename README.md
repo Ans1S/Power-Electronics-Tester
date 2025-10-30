@@ -213,10 +213,10 @@ A complete automated testing ecosystem consisting of:
 **Test Sequence:**
 - **Voltage Selection:** Button-based menu to select test voltage (10V, 24V, 48V for CCCV variants)
 - **Current Application:** External pin provides constant current load based on selected voltage
-- **UART Communication:** Optional UART interface for test configuration and result download (for later database import)
+- **UART Communication:** UART interface for configuration during test setup and verification during test execution
 - **LED Status Monitoring:** Confirms output status indicator operation during test
 - **Multi-Voltage Testing:** Tests 2-3 voltage points per DUT (e.g., 5V, 12V, 24V for full characterization)
-- **Local Logging:** Measurements stored in on-device flash memory, accessible via UART download
+- **Local Logging:** Measurements stored in on-device flash memory, accessible via UART download for later database import
 - **Standalone Results:** Test pass/fail determination made locally without database connectivity
 
 **Key Metrics:** Standalone reliability (no network dependency), voltage accuracy (±2%), local data storage capacity, UART communication robustness.
@@ -243,6 +243,11 @@ A complete automated testing ecosystem consisting of:
 - **Export Format:** CSV, JSON for statistical analysis and reporting
 
 #### **Benefits for End Users**
+
+<div align="center">
+  <img src="Images/DCP48M_dut_qr-code_1.webp?raw=true" alt="QR-Code Traceability Label" width="400" height="300">
+</div>
+
 - **Per-Unit Data Access:** Every customer can scan the QR-code on their purchased PSU to access the complete test report and measurement history for their specific unit
 - **Lifetime Traceability:** Manufacturing date, test conditions, voltage/current profiles tested, thermal behavior, and pass/fail status permanently linked to the physical product
 - **Quality Verification:** Customers verify the exact test parameters their unit underwent before leaving the factory
