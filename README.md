@@ -116,7 +116,7 @@ A complete automated testing ecosystem consisting of:
   <table>
     <tr>
       <td align="center">
-        <img src="Images/DCC48XX_CCCV48XX.png?raw=true" alt="DCC48XX & CCCV48XX Tester" width="300" height="200">
+        <img src="Images/DCC48XX_CCCV48XX.png?raw=true" alt="DCC48XX & CCCV48XX Tester" width="300" height="300">
         <p><strong>Tester Frontend</strong></p>
       </td>
       <td align="center">
