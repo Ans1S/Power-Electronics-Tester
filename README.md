@@ -263,6 +263,10 @@ A modular automated testing ecosystem consisting of:
 
 <div align="center">
   <img src="Images/DCP48M_dut_qr-code_1.webp?raw=true" alt="QR-Code Traceability Label" width="400" height="300">
+  <br/><br/>
+  <p><strong>📱 Scan the QR-Code to View Test Report:</strong></p>
+  <p><a href="https://digitalpowersystems.eu/q/?u=jdXR5NacRT6MlYM56yddAA" target="_blank"><code>https://digitalpowersystems.eu/q/?u=jdXR5NacRT6MlYM56yddAA</code></a></p>
+  <p><em>Each PSU ships with a unique UUID - scan to access complete test history and measurements</em></p>
 </div>
 
 - **Per-Unit Data Access:** Every customer can scan the QR-code on their purchased PSU to access the complete test report and measurement history for their specific unit
