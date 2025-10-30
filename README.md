@@ -4,7 +4,7 @@
 
 <br />
 <div align="center">
-  <img src="Images/DCP48M_tester.png?raw=true" alt="Power Electronics Tester Suite" width="600" height="400">
+  <img src="Images/DCP48M_while_testing.png?raw=true" alt="Power Electronics Tester Suite" width="600" height="400">
   <p align="center">
     <strong>Comprehensive automated validation framework for 6+ power supply topologies with precision measurement and quality tracking</strong>
   </p>
