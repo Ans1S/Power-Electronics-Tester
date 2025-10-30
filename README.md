@@ -239,7 +239,7 @@ A complete automated testing ecosystem consisting of:
 
 ---
 
-### **3️⃣ Comprehensive Traceability via QR-Code**
+### **2️⃣ Comprehensive Traceability via QR-Code**
 
 **Challenge:** Enable production line users to track test results via simple QR-code scanning without requiring technical knowledge.
 
@@ -254,7 +254,7 @@ A complete automated testing ecosystem consisting of:
 
 ---
 
-### **4️⃣ Production-Ready Architecture**
+### **3️⃣ Production-Ready Architecture**
 
 **Challenge:** Ensure test infrastructure reliably validates thousands of units without manual intervention or frequent recalibration.
 
