@@ -4,7 +4,7 @@
 
 <br />
 <div align="center">
-  <img src="Images/DCP48M_while_testing.png?raw=true" alt="Power Electronics Tester Suite" width="800" height="600">
+  <img src="Images/DCP48M_while_testing_11zon.jpg?raw=true" alt="Power Electronics Tester Suite" width="800" height="600">
   <p align="center">
     <strong>Comprehensive automated validation framework for 6+ power supply topologies with precision measurement and quality tracking</strong>
   </p>
@@ -64,18 +64,18 @@ A complete automated testing ecosystem consisting of:
 
 ### **1️⃣ ACPD Tester** - AC/DC Power Delivery Validation
 <div align="center">
-  <img src="Images/ACPD.png?raw=true" alt="ACPD Tester" width="600" height="400">
+  <img src="Images/ACPD_1.webp?raw=true" alt="ACPD Tester" width="600" height="400">
 </div>
 
 **Purpose:** Comprehensive testing of AC/DC power delivery topologies for universal mains compatibility.
 
 **Test Sequence:**
-- **Input Validation:** Verifies 230V AC mains voltage and frequency stability
-- **No-Load Stability:** Characterizes output voltage drift without load over extended period
-- **Progressive Loading:** Incrementally increases current demand while validating regulation accuracy at each step
-- **Isolation Verification:** Measures and validates galvanic isolation between primary and secondary
-- **Protection Activation:** Triggers overvoltage (OVP) and overcurrent (OCP) protection functions
-- **Efficiency Mapping:** Calculates power conversion efficiency at various load points
+- **AC Input Connection:** 230V AC mains voltage connected at primary input
+- **USB-C Power Delivery:** PD voltage profiles (5V, 9V, 15V, 20V) applied via USB-C connector
+- **Connector Rotation:** USB-C cable rotated 180° during testing to verify bi-directional contact integrity
+- **Full-Load Testing:** All PD voltage levels tested under full-load conditions with continuous measurement
+- **Voltage Stability:** Verifies output voltage regulation and frequency stability throughout test sequence
+- **Isolation Verification:** Galvanic isolation validated between primary and secondary sides
 
 **Key Metrics:** Input voltage stability, load regulation, isolation resistance, protection response time.
 
@@ -86,11 +86,11 @@ A complete automated testing ecosystem consisting of:
   <table>
     <tr>
       <td align="center">
-        <img src="Images/HDR20.png?raw=true" alt="HDR20 Tester Unit" width="300" height="250">
+        <img src="Images/HDR20_1.webp?raw=true" alt="HDR20 Tester Unit" width="300" height="250">
         <p><strong>Tester Unit</strong></p>
       </td>
       <td align="center">
-        <img src="Images/HDR20_dut.png?raw=true" alt="HDR20 Device Under Test" width="300" height="200">
+        <img src="Images/HDR20_dut_1.webp?raw=true" alt="HDR20 Device Under Test" width="300" height="200">
         <p><strong>Device Under Test</strong></p>
       </td>
     </tr>
@@ -100,12 +100,12 @@ A complete automated testing ecosystem consisting of:
 **Purpose:** Advanced validation of multi-output power supplies with cross-load scenarios and thermal characterization.
 
 **Test Sequence:**
-- **Channel Independence:** Tests each output voltage independently with precision measurement
-- **Cross-Load Scenarios:** Applies different load combinations across multiple outputs simultaneously
+- **AC Input Connection:** 230V AC mains voltage connected at primary input
+- **Output Load Selection:** Manual slide switch selects target measurement voltage for each test cycle
+- **Dual-Pin Load Connection:** Two pins contact and apply full load to the selected output
+- **Multi-Voltage Testing:** All output voltages tested sequentially under full-load conditions
+- **Channel Independence:** Each output voltage measured independently with precision measurement
 - **Regulation Performance:** Validates voltage accuracy across the full load range (0-100%)
-- **Thermal Mapping:** Monitors temperature rise across all outputs under full-load conditions
-- **Efficiency Calculation:** Computes power distribution and losses across all channels
-- **Protection Coordination:** Verifies protection doesn't interfere with normal operation
 
 **Key Metrics:** Per-channel accuracy (±2%), cross-regulation, thermal steady-state, cascading protection timing.
 
@@ -116,11 +116,11 @@ A complete automated testing ecosystem consisting of:
   <table>
     <tr>
       <td align="center">
-        <img src="Images/DCC48XX_CCCV48XX.png?raw=true" alt="DCC48XX & CCCV48XX Tester" width="300" height="300">
+        <img src="Images/DCC48XX_CCCV48XX_1.webp?raw=true" alt="DCC48XX & CCCV48XX Tester" width="300" height="300">
         <p><strong>Tester Frontend</strong></p>
       </td>
       <td align="center">
-        <img src="Images/DCC48XX_CCCV48XX_dut.png?raw=true" alt="Device Under Test" width="300" height="200">
+        <img src="Images/DCC48XX_CCCV48XX_dut_1.webp?raw=true" alt="Device Under Test" width="300" height="200">
         <p><strong>Device Under Test</strong></p>
       </td>
     </tr>
@@ -130,16 +130,14 @@ A complete automated testing ecosystem consisting of:
 **Purpose:** Sophisticated validation of Constant Current / Constant Voltage topologies with RGB startup sequence verification and high-current operation.
 
 **Test Sequence:**
-- **RGB Startup Detection:** Monitors APDS9960 color sensor for RGB LED sequence indicating proper initialization (indicates firmware boot validation)
-- **Mode Validation:** Tests CC (4A @ 5V, 12A @ 12V, 24A @ 24V) and CV modes independently
-- **Mode Transition:** Validates seamless switching between CC→CV modes without overshoot or instability
-- **Load Transient:** Applies rapid load steps and measures response time (target: <45ms settling)
-- **Current Ripple Measurement:** Quantifies output current ripple at various operating points
-- **Output Ripple Analysis:** Measures voltage ripple under full-load conditions
-- **Efficiency Calculation:** Determines power conversion efficiency at rated conditions
+- **Device Selection:** Display menu selects which PSU variant to test (CCCV4805, CCCV4812, CCCV4824, DCC variants)
+- **Pin Contact:** When DUT is inserted, two pins automatically contact and establish connection
+- **DC Power Input:** 48V DC input applied to the selected device under test
+- **Voltage Measurement:** Selected output voltage measured under full-load conditions
+- **RGB Startup Detection:** Monitors color sensor for RGB LED sequence indicating proper initialization
 - **LED Status Monitoring:** Verifies status LED remains active throughout entire test sequence
 
-**Key Metrics:** CC/CV accuracy (±1.8%), mode transition time, current ripple (<133mApp), thermal stability, LED indication reliability.
+**Key Metrics:** CC/CV accuracy (±1.8%), mode transition time, thermal stability, LED indication reliability.
 
 ---
 
@@ -148,28 +146,29 @@ A complete automated testing ecosystem consisting of:
   <table>
     <tr>
       <td align="center">
-        <img src="Images/DP-PD_USB-C-3A.png?raw=true" alt="DC-PD & USB-C Tester" width="300" height="250">
+        <img src="Images/DP-PD_USB-C-3A_1.webp?raw=true" alt="DC-PD & USB-C Tester" width="300" height="250">
         <p><strong>Tester Unit</strong></p>
       </td>
       <td align="center">
-        <img src="Images/USB-C-3A_dut_testing.png?raw=true" alt="USB-C Testing" width="300" height="200">
+        <img src="Images/USB-C-3A_dut_testing_1.webp?raw=true" alt="USB-C Testing" width="300" height="200">
         <p><strong>Active Testing</strong></p>
       </td>
     </tr>
   </table>
 </div>
 
-**Purpose:** Specialized validation of USB Power Delivery profiles and USB-C 3A capable supplies with compliance verification.
+**Purpose:** Comprehensive testing of Power Delivery profiles and high-current USB-C implementations.
 
 **Test Sequence:**
-- **PD Handshake Verification:** Validates correct USB Power Delivery 3.0 negotiation sequence (5V → 9V → 12V profiles)
-- **3A Profile Validation:** Confirms 3A capability at all supported voltage levels with ±2% accuracy
-- **Thermal Protection:** Monitors temperature during sustained 3A operation and validates shutdown threshold
-- **Overcurrent Response:** Tests USB-C current limiting and protection mechanisms
-- **Cable Certification:** Validates EMC compliance with certified USB-C cables
-- **Compliance Testing:** Ensures adherence to USB-C and Power Delivery standards
+- **Device Selection:** Display menu selects PD voltage profile (5V, 9V, 15V, 20V) and test mode (standard PD or 3A mode)
+- **USB-C Connection:** USB-C connector inserted for physical and electrical connection
+- **PD Profile Testing:** Multi-voltage testing with full-load current application (PD 5V/3A, 9V/2.77A, 15V/1.8A, 20V/1.5A)
+- **3A Mode Testing:** Special USB-C 3A mode tested at 5V only with 3A load applied
+- **Connector Rotation:** Tests rotation of connector (up/down orientation) to verify bi-directional contact and data line integrity
+- **Voltage Stability:** Monitors output voltage regulation under full-load conditions for each profile
+- **Isolation Verification:** Verifies USB data lines remain isolated during power delivery
 
-**Key Metrics:** PD profile support, current capability (3A verified), thermal response, EMC compliance, standard adherence.
+**Key Metrics:** PD accuracy (±2%), connector reliability (10k cycles), transition stability (&lt;100ms), 3A current compliance.
 
 ---
 
@@ -178,46 +177,49 @@ A complete automated testing ecosystem consisting of:
   <table>
     <tr>
       <td align="center">
-        <img src="Images/DCP48M_tester.png?raw=true" alt="DCP48M Tester Setup" width="300" height="200">
+        <img src="Images/DCP48M_tester_1.webp?raw=true" alt="DCP48M Tester Setup" width="300" height="200">
         <p><strong>Tester Configuration</strong></p>
       </td>
       <td align="center">
-        <img src="Images/DCP48M_while_testing.png?raw=true" alt="DCP48M During Testing" width="300" height="200">
+        <img src="Images/DCP48M_while_testing_11zon.jpg?raw=true" alt="DCP48M During Testing" width="300" height="200">
         <p><strong>Testing in Progress</strong></p>
       </td>
     </tr>
   </table>
 </div>
 
-**Test Sequence:**
-- **Input Stability:** Validates 48V DC input under various source impedance conditions
-- **Isolation Testing:** Comprehensive galvanic isolation measurement and verification
-- **Output Ripple Measurement:** High-resolution measurement of voltage and current ripple
-- **Dynamic Load Transient:** Applies realistic pulsed loads to characterize transient response
-- **Extended Runtime:** Multi-hour stress testing under full load with thermal tracking
-- **Efficiency Profiling:** Detailed efficiency mapping across load range
-- **Protection Margin Testing:** Validates protection thresholds and safety margins
+**Purpose:** Modbus-controlled scenario-based testing for advanced 48V converter characterization across multiple topologies.
 
-**Key Metrics:** Isolation resistance, ripple quantification, transient response time, extended reliability, protection margin.
+**Test Sequence:**
+- **Modbus Configuration:** Controller sends scenario definition via Modbus (voltage selection, current profile, duration)
+- **Multi-Voltage Testing:** Sequential testing at 48V, 24V, 12V with full-load current applied to each
+- **Scenario Execution:** Predefined test scenario loaded and executed with real-time parameter adjustment
+- **Load Application:** Programmable electronic load applies specified current profile matching DUT characteristics
+- **Measurement Logging:** All measurements streamed to database via USB/network with per-second granularity
+- **Extended Testing:** Multi-hour soak tests for reliability characterization and thermal behavior
+- **Efficiency Profiling:** Detailed efficiency mapping across full load range and temperature range
+
+**Key Metrics:** Modbus response time, multi-voltage accuracy (±1.8%), thermal stability, efficiency measurement, extended reliability.
 
 ---
 
 ### **6️⃣ DIG-CCCV-15W Tester** - Standalone Offline 15W Converter Validation
 <div align="center">
-  <img src="Images/DIG-CCCV-15W.png?raw=true" alt="DIG-CCCV-15W Standalone Tester" width="600" height="400">
+  <img src="Images/DIG-CCCV-15W_1.webp?raw=true" alt="DIG-CCCV-15W Standalone Tester" width="600" height="400">
 </div>
 
 **Purpose:** Portable field-deployable tester for 15W CCCV converters with standalone operation without database connectivity.
 
 **Test Sequence:**
-- **CC Mode Verification:** Tests 0A - 1.2A constant current output with ±2% accuracy
-- **CV Mode Verification:** Tests 10V - 60V constant voltage output with ±2% accuracy
-- **Mode Switching:** Validates seamless transition between CC/CV operating modes
-- **Full-Load Operation:** 15W continuous operation with thermal monitoring
-- **LED Status Verification:** Confirms output status indicator operation
-- **Local Logging:** Stores results locally for manual inspection or export
+- **Voltage Selection:** Button-based menu to select test voltage (10V, 24V, 48V for CCCV variants)
+- **Current Application:** External pin provides constant current load based on selected voltage
+- **UART Communication:** Optional UART interface for test configuration and result download (for later database import)
+- **LED Status Monitoring:** Confirms output status indicator operation during test
+- **Multi-Voltage Testing:** Tests 2-3 voltage points per DUT (e.g., 5V, 12V, 24V for full characterization)
+- **Local Logging:** Measurements stored in on-device flash memory, accessible via UART download
+- **Standalone Results:** Test pass/fail determination made locally without database connectivity
 
-**Key Metrics:** CC accuracy (±2%), CV accuracy (±2%), mode transition stability, thermal steady-state, standalone reliability.
+**Key Metrics:** Standalone reliability (no network dependency), voltage accuracy (±2%), local data storage capacity, UART communication robustness.
 
 ---
 
@@ -239,6 +241,13 @@ A complete automated testing ecosystem consisting of:
 - **Traceability:** UUID-based tracking linking physical QR-code to test results
 - **Query Capability:** Production batch analysis, failure trending, quality metrics
 - **Export Format:** CSV, JSON for statistical analysis and reporting
+
+#### **Benefits for End Users**
+- **Per-Unit Data Access:** Every customer can scan the QR-code on their purchased PSU to access the complete test report and measurement history for their specific unit
+- **Lifetime Traceability:** Manufacturing date, test conditions, voltage/current profiles tested, thermal behavior, and pass/fail status permanently linked to the physical product
+- **Quality Verification:** Customers verify the exact test parameters their unit underwent before leaving the factory
+- **Batch Analysis:** Production teams identify quality trends across manufacturing batches and correlate failures to specific design revisions
+- **Audit Trail:** Complete operational history supports product warranty claims and regulatory compliance documentation
 
 ---
 
