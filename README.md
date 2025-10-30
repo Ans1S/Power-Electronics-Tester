@@ -71,9 +71,10 @@ A complete automated testing ecosystem consisting of:
 
 **Test Sequence:**
 - **AC Input Connection:** 230V AC mains voltage connected at primary input
-- **USB-C Power Delivery:** PD voltage profiles (5V, 9V, 15V, 20V) applied via USB-C connector
+- **USB-C Power Delivery:** PD voltage profiles (5V, 9V, 12V) applied via USB-C connector
 - **Connector Rotation:** USB-C cable rotated 180° during testing to verify bi-directional contact integrity
 - **Full-Load Testing:** All PD voltage levels tested under full-load conditions with continuous measurement
+- **Status LED Monitoring:** Verifies status LED remains active throughout entire test execution
 - **Voltage Stability:** Verifies output voltage regulation and frequency stability throughout test sequence
 - **Isolation Verification:** Galvanic isolation validated between primary and secondary sides
 
@@ -105,7 +106,7 @@ A complete automated testing ecosystem consisting of:
 - **Dual-Pin Load Connection:** Two pins contact and apply full load to the selected output
 - **Multi-Voltage Testing:** All output voltages tested sequentially under full-load conditions
 - **Channel Independence:** Each output voltage measured independently with precision measurement
-- **Regulation Performance:** Validates voltage accuracy across the full load range (0-100%)
+- **Status LED Monitoring:** Verifies status LED remains active throughout entire test execution
 
 **Key Metrics:** Per-channel accuracy (±2%), cross-regulation, thermal steady-state, cascading protection timing.
 
@@ -135,7 +136,8 @@ A complete automated testing ecosystem consisting of:
 - **DC Power Input:** 48V DC input applied to the selected device under test
 - **Voltage Measurement:** Selected output voltage measured under full-load conditions
 - **RGB Startup Detection:** Monitors color sensor for RGB LED sequence indicating proper initialization
-- **LED Status Monitoring:** Verifies status LED remains active throughout entire test sequence
+- **Status LED Monitoring:** Verifies status LED remains active throughout entire test execution
+- **Full-Load Testing:** All CC/CV variants tested under full-load conditions with continuous verification
 
 **Key Metrics:** CC/CV accuracy (±1.8%), mode transition time, thermal stability, LED indication reliability.
 
@@ -160,15 +162,15 @@ A complete automated testing ecosystem consisting of:
 **Purpose:** Comprehensive testing of Power Delivery profiles and high-current USB-C implementations.
 
 **Test Sequence:**
-- **Device Selection:** Display menu selects PD voltage profile (5V, 9V, 15V, 20V) and test mode (standard PD or 3A mode)
+- **Device Selection:** Display menu selects PD voltage profile (5V, 9V, 12V) and test mode (standard PD or 3A mode)
 - **USB-C Connection:** USB-C connector inserted for physical and electrical connection
-- **PD Profile Testing:** Multi-voltage testing with full-load current application (PD 5V/3A, 9V/2.77A, 15V/1.8A, 20V/1.5A)
+- **PD Profile Testing:** Multi-voltage testing with full-load current application
 - **3A Mode Testing:** Special USB-C 3A mode tested at 5V only with 3A load applied
 - **Connector Rotation:** Tests rotation of connector (up/down orientation) to verify bi-directional contact and data line integrity
+- **Status LED Monitoring:** Verifies status LED remains active throughout entire test execution
 - **Voltage Stability:** Monitors output voltage regulation under full-load conditions for each profile
-- **Isolation Verification:** Verifies USB data lines remain isolated during power delivery
 
-**Key Metrics:** PD accuracy (±2%), connector reliability (10k cycles), transition stability (&lt;100ms), 3A current compliance.
+**Key Metrics:** PD accuracy (±2%), connector reliability (10k cycles) 3A current compliance.
 
 ---
 
@@ -192,12 +194,11 @@ A complete automated testing ecosystem consisting of:
 
 **Test Sequence:**
 - **Modbus Configuration:** Controller sends scenario definition via Modbus (voltage selection, current profile, duration)
-- **Multi-Voltage Testing:** Sequential testing at 48V, 24V, 12V with full-load current applied to each
+- **Multi-Voltage Testing:** Sequential testing at different voltages with full-load current applied to each
 - **Scenario Execution:** Predefined test scenario loaded and executed with real-time parameter adjustment
 - **Load Application:** Programmable electronic load applies specified current profile matching DUT characteristics
-- **Measurement Logging:** All measurements streamed to database via USB/network with per-second granularity
-- **Extended Testing:** Multi-hour soak tests for reliability characterization and thermal behavior
-- **Efficiency Profiling:** Detailed efficiency mapping across full load range and temperature range
+- **Status LED Monitoring:** Verifies status LED remains active throughout entire test execution
+- **Measurement Logging:** All measurements streamed to database with per-second granularity
 
 **Key Metrics:** Modbus response time, multi-voltage accuracy (±1.8%), thermal stability, efficiency measurement, extended reliability.
 
@@ -214,10 +215,10 @@ A complete automated testing ecosystem consisting of:
 - **Current Application:** External pin provides constant current load based on selected voltage
 - **UART Communication:** UART interface for configuration during test setup and verification during test execution
 - **LED Status Monitoring:** Confirms output status indicator operation during test
-- **Multi-Voltage Testing:** Tests 2-3 voltage points per DUT (e.g., 5V, 12V, 24V for full characterization)
+- **Multi-Voltage Testing:** Tests 2-3 voltage points per DUT (e.g., 10V, 24V, 60V for full characterization)
 - **Standalone Results:** Test pass/fail determination made locally without database connectivity
 
-**Key Metrics:** Standalone reliability (no network dependency), voltage accuracy (±2%), local data storage capacity, UART communication robustness.
+**Key Metrics:** Standalone reliability (no network dependency), voltage accuracy (±2%), UART communication robustness.
 
 ---
 
