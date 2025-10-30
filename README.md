@@ -30,7 +30,7 @@ Design and implement a **universal testing platform** for heterogeneous power su
 A modular automated testing ecosystem consisting of:
 
 - **6 Specialized Testers:** Each optimized for a specific PSU topology with topology-specific measurement hardware and test procedures
-- **Testers 1-5 (ACPD, HDR20, DCC48XX/CCCV48XX, DC-PD/USB-C, DCP48M):** Raspberry Pi controller with custom measurement head designed for each topology - providing GPIO control, I2C sensor coordination, and ADC/DAC measurement via dedicated interface boards
+- **Testers 1-5 (ACPD, HDR20, DCC48XX/CCCV48XX, DC-PD/USB-C, DCP48M):** Raspberry Pi with custom measurement head designed for each topology - providing GPIO control, I2C sensor coordination, and ADC/DAC measurement via dedicated interface boards
 - **Tester 6 (DIG-CCCV-15W):** Standalone system using Raspberry Pi Pico with integrated measurement capability - designed for portable field deployment without database connectivity
 - **Hardware Measurement Cores:** ADC/DAC precision measurement, color sensors for LED/RGB status verification, relay feedback for pass/fail indication, and thermal monitoring via sensor integration
 - **Database Backend:** MySQL persistent storage with UUID-linked QR-codes enabling per-unit traceability and historical measurement tracking
@@ -42,7 +42,7 @@ A modular automated testing ecosystem consisting of:
 ## 🛠️ Technical Architecture
 
 ### Tester 1-5: Raspberry Pi Controller Architecture
-- **Main Controller:** Raspberry Pi with Python/C hybrid application layer
+- **Main Controller:** Raspberry Pi with C application layer
 - **Custom Measurement Head:** Topology-specific interface board with:
   - ADC/DAC for precision voltage and current measurement
   - Color sensors (I2C) for LED/RGB status validation
@@ -52,7 +52,7 @@ A modular automated testing ecosystem consisting of:
 - **Topologies:** ACPD, HDR20, DCC48XX/CCCV48XX, DC-PD/USB-C-3A, DCP48M
 
 ### Tester 6: Raspberry Pi Pico Standalone Architecture
-- **Microcontroller:** Raspberry Pi Pico (RP2040) with MicroPython/C firmware
+- **Microcontroller:** Raspberry Pi Pico (RP2040) with C firmware
 - **Integrated Measurement:** On-board ADC, GPIO control, I2C/UART interfaces
 - **Standalone Operation:** No database connectivity - results stored locally in flash memory
 - **UART Interface:** For configuration during test setup and result download for later database import
@@ -69,9 +69,9 @@ A modular automated testing ecosystem consisting of:
 ### Software Stack
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
-| **Application** | Python/C (RPi) / MicroPython (Pico) | Test orchestration, parameter control, result logging |
-| **Driver** | GPIO/I2C/UART Libraries | Hardware interface abstraction, sensor communication |
-| **Measurement** | Sampling & Filtering | Voltage/current acquisition with averaging and calibration |
+| **Application** | C | Test orchestration, parameter control, result logging (all testers) |
+| **Driver** | C/GPIO/I2C/UART Libraries | Hardware interface abstraction, sensor communication |
+| **Measurement** | C with Sampling & Filtering | Voltage/current acquisition with averaging and calibration |
 | **Configuration** | JSON/INI Files | Mode-specific tolerances, test parameters, sensor limits |
 | **Database** | MySQL Backend (Testers 1-5) | Persistent storage of all measurements and test results |
 | **Communication** | Ethernet/USB/UART | Status reporting and result upload to database (or local storage for Tester 6) |
@@ -321,10 +321,9 @@ A modular automated testing ecosystem consisting of:
 
 ## 🛠️ Created With
 
-* **[Raspberry Pi](https://www.raspberrypi.org/)** - Main controller for Testers 1-5 with Python application layer
-* **[Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/)** - Microcontroller for Tester 6 (standalone DIG-CCCV-15W)
-* **[Python](https://www.python.org/)** - Test orchestration, measurement acquisition, database interface
-* **[MicroPython](https://micropython.org/)** - Embedded firmware for RP2040 on Tester 6
+* **[Raspberry Pi](https://www.raspberrypi.org/)** - Main controller for Testers 1-5 running C-based application
+* **[Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/)** - Microcontroller for Tester 6 (standalone DIG-CCCV-15W) with C firmware
+* **[C Programming Language](https://en.wikipedia.org/wiki/C_(programming_language))** - Complete application implementation for all testers (measurement acquisition, test orchestration, device control)
 * **[MySQL](https://www.mysql.com/)** - Persistent storage of all test results and metrics (Testers 1-5)
 * **[KiCad](https://www.kicad.org/)** - PCB design for custom measurement heads (topology-specific interface boards)
 * **[LTspice](https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html)** - Circuit simulation for precision measurement validation
@@ -338,14 +337,14 @@ This project demonstrates comprehensive expertise in:
 
 | Competency | Implementation |
 |---|---|
+| **Embedded C Development** | Cross-platform C applications for both Raspberry Pi and RP2040 microcontroller |
 | **Single-Board Computer Integration** | Raspberry Pi controller architecture with custom measurement head coordination |
-| **Microcontroller Design** | RP2040-based standalone system with integrated measurement and local storage |
+| **Microcontroller Programming** | RP2040-based C firmware with integrated measurement and local storage |
 | **Precision Measurement** | ADC/DAC calibration, noise filtering for ±2% accuracy across multiple platforms |
 | **Hardware Integration** | I2C sensor coordination, GPIO control, custom PCB interface boards |
 | **Database Design** | MySQL schema for efficient test result storage and historical tracking |
-| **Application Architecture** | Multi-topology testing framework with platform-specific implementations |
+| **Application Architecture** | Multi-topology testing framework with platform-specific C implementations |
 | **Production Engineering** | Traceability systems, QR-code integration, scalable test infrastructure |
-| **Problem Solving** | Iterative testing, topology-specific validation, comprehensive logging |
 
 ---
 
