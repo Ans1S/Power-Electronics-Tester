@@ -1,12 +1,12 @@
 <div id="top" align="center">
-<h1 align="center">⚡ Automated Power Supply Test Suite<br/>Production-Grade Testing Infrastructure with QR-Code Traceability</h1>
+<h1 align="center">⚡ Power-Supply Test Platform<br/>Production-Grade Multi-Topology Testing Infrastructure<br/>with UUID-Linked QR-Code Traceability & Real-Time Validation</h1>
 </div>
 
 <br />
 <div align="center">
   <img src="Images/DCP48M_while_testing_11zon.jpg?raw=true" alt="Power Electronics Tester Suite" width="800" height="600">
   <p align="center">
-    <strong>Comprehensive automated validation framework for 6+ power supply topologies with precision measurement and quality tracking</strong>
+    <strong>6 Specialized Testers • ±2% Measurement Accuracy • Complete Per-Unit Traceability • Database-Backed Quality Metrics</strong>
   </p>
 </div>
 
