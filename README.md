@@ -43,18 +43,18 @@ A complete automated testing ecosystem consisting of:
 ### System Overview
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│         Web Dashboard & Quality Tracking System             │
-│  ┌────────────────────────────────────────────────────────┐ │
-│  │  QR-Code Scanning │ Test History │ Metrics Analysis   │ │
-│  │  • Unique UUID    │ • Pass/Fail  │ • Efficiency       │ │
-│  │  • Timestamp      │ • Duration   │ • Thermal Data     │ │
-│  │  • Results Link   │ • All Params │ • Compliance       │ │
-│  └────────────────────────────────────────────────────────┘ │
-└────────────────────┬────────────────────────────────────────┘
+│              Dashboard & Quality Tracking System             │
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │  QR-Code Scanning │ Test History │ Metrics Analysis    │  │
+│  │  • Unique UUID    │ • Pass/Fail  │ • Voltage/Current   │  │
+│  │  • Timestamp      │ • Test Params│ • Compliance        │  │
+│  │  • Results Link   │ • All Logs   │ • Status Codes      │  │
+│  └────────────────────────────────────────────────────────┘  │
+└────────────────────┬─────────────────────────────────────────┘
                      │ Database API
          ┌───────────┴────────────┐
          │                        │
-    ┌────▼──────┐          ┌─────▼────────┐
+    ┌────▼──────┐          ┌──────▼───────┐
     │   MySQL   │          │ Test Runner  │
     │ Database  │          │  Application │
     │           │          │              │
@@ -66,23 +66,23 @@ A complete automated testing ecosystem consisting of:
         ┌────────────────────────┼────────────────────────┐
         │                        │                        │
     ┌───▼──────┐        ┌────────▼────────┐      ┌───────▼────┐
-    │  ACPD    │        │  DCC48XX &      │      │   HDR20    │
-    │  Tester  │        │  CCCV48XX       │      │   Tester   │
-    │          │        │  Tester         │      │            │
+    │  ACPD    │        │ CCCV/DCC 48V    │      │   HDR20    │
+    │  Tester  │        │  Test Variants  │      │   Tester   │
+    │          │        │  (6 Modes)      │      │            │
     └──────────┘        └─────────────────┘      └────────────┘
         │                        │                        │
     ┌───▼──────┐        ┌────────▼────────┐      ┌───────▼────┐
-    │  DC-PD & │        │   DCP48M        │      │ DIG-CCCV   │
-    │  USB-C   │        │   Tester        │      │   Tester   │
-    │  Tester  │        │                 │      │  (Local)   │
+    │  DC-PD & │        │   DCP48M        │      │   Config   │
+    │  USB-C   │        │   Tester        │      │ Management │
+    │  Tester  │        │                 │      │  (INI)     │
     └──────────┘        └─────────────────┘      └────────────┘
 
 Hardware Layer (All Testers Share):
 ├── ADC (12-bit) → Voltage/Current Measurement
 ├── DAC → Programmable Current/Voltage Reference
-├── Color Sensor → LED Status Verification
-├── Thermal Sensors → Temperature Monitoring
-└── Relay Feedback → Test Status Output
+├── Color Sensor → RGB LED Detection & Status Verification
+├── Thermal Sensors → Temperature Monitoring via ADC
+└── Relay Feedback → Test Pass/Fail Output
 ```
 
 ### Hardware Stack (Per Tester)
@@ -207,7 +207,7 @@ Hardware Layer (All Testers Share):
 **Purpose:** Specialized validation of USB Power Delivery profiles and USB-C 3A capable supplies with compliance verification.
 
 **Test Sequence:**
-- **PD Handshake Verification:** Validates correct USB Power Delivery 3.0 negotiation sequence (5V → 9V → 15V → 20V profiles)
+- **PD Handshake Verification:** Validates correct USB Power Delivery 3.0 negotiation sequence (5V → 9V → 12V profiles)
 - **3A Profile Validation:** Confirms 3A capability at all supported voltage levels with ±2% accuracy
 - **Thermal Protection:** Monitors temperature during sustained 3A operation and validates shutdown threshold
 - **Overcurrent Response:** Tests USB-C current limiting and protection mechanisms
