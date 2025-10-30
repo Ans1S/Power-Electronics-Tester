@@ -78,17 +78,17 @@ A complete automated testing ecosystem consisting of:
     └──────────┘        └─────────────────┘      └────────────┘
 
 Hardware Layer (All Testers Share):
-├── ADS1115 (12-bit ADC) → Voltage/Current Measurement
-├── MCP4725 (DAC) → Programmable Current/Voltage Reference
-├── APDS9960 (Color Sensor) → LED Status Verification
+├── ADC (12-bit) → Voltage/Current Measurement
+├── DAC → Programmable Current/Voltage Reference
+├── Color Sensor → LED Status Verification
 ├── Thermal Sensors → Temperature Monitoring
 └── Relay Feedback → Test Status Output
 ```
 
 ### Hardware Stack (Per Tester)
-- **Measurement IC:** ADS1115 16-bit ADC with programmable gain
-- **Control IC:** MCP4725 DAC for precise analog reference generation
-- **Sensor:** APDS9960 color/proximity sensor for LED validation
+- **Measurement IC:** 16-bit ADC with programmable gain
+- **Control IC:** Programmable DAC for precise analog reference generation
+- **Sensor:** Color/proximity sensor for LED validation
 - **Interface:** I2C communication for sensor coordination
 - **Thermal:** Integrated temperature measurement via ADC channels
 - **Feedback:** Relay contact for pass/fail status output
@@ -218,28 +218,7 @@ Hardware Layer (All Testers Share):
 
 ---
 
-### **5️⃣ DIG-CCCV-15W Tester** - Standalone Offline Validation
-<div align="center">
-  <img src="Images/DIG-CCCV-15W.png?raw=true" alt="DIG-CCCV-15W Standalone Tester" width="600" height="500">
-</div>
-
-**Purpose:** Portable field-deployable tester for 15W CCCV converters without requiring database connectivity.
-
-**Test Sequence:**
-- **CC Mode Verification:** Tests 0A - 1.2A constant current output with ±2% accuracy
-- **CV Mode Verification:** Tests 10V - 60V constant voltage output with ±2% accuracy
-- **Mode Switching:** Validates seamless transition between CC/CV operating modes
-- **Full-Load Operation:** 15W continuous operation with thermal monitoring
-- **LED Status Verification:** Confirms output status indicator operation
-- **Local Logging:** Stores results locally for manual inspection or export
-
-**Key Metrics:** CC accuracy, CV accuracy, mode transition stability, thermal steady-state (design target: +22.9°C ΔT).
-
-**Note:** Standalone operation ideal for prototype labs, field testing, and validation without network infrastructure.
-
----
-
-### **6️⃣ DCP48M Tester** - Multi-Mode 48V Converter Advanced Characterization
+### **5️⃣ DCP48M Tester** - Multi-Mode 48V Converter Advanced Characterization
 <div align="center">
   <table>
     <tr>
@@ -407,27 +386,6 @@ This project demonstrates comprehensive expertise in:
 | **Firmware Architecture** | Configuration management, modular test functions, error handling |
 | **Production Engineering** | Traceability systems, QR-code integration, scalable test infrastructure |
 | **Problem Solving** | Iterative testing, tolerance-based validation, comprehensive logging |
-
----
-
-## 📈 From Prototype to Production
-
-| Phase | Focus | Status |
-|-------|-------|--------|
-| **Phase 1** | ACPD & HDR20 Tester Development | ✅ Validated |
-| **Phase 2** | DCC48XX & CCCV48XX Integration | ✅ Refined |
-| **Phase 3** | USB-C 3A & DC-PD Support | ✅ Tested |
-| **Phase 4** | DCP48M Extended Characterization | ✅ Deployed |
-| **Phase 5** | QR-Code Traceability System | ✅ Active |
-| **Phase 6** | DIG-CCCV-15W Standalone Tester | ✅ Field Ready |
-| **Phase 7** | Production-Scale Deployment | ✅ **In Production** |
-
-**Design Evolution:**
-- Performance optimization (measurement speed +300%)
-- Reliability enhancements (99.8% uptime target)
-- Usability improvements (intuitive UI for production floor)
-- Scalability (from 1 unit/hour → 6 units/hour throughput)
-- Cost reduction through shared hardware platform
 
 ---
 
