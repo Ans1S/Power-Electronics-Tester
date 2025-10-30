@@ -14,49 +14,67 @@
 
 ## 📋 Project Overview
 
-This project demonstrates the complete design and implementation of **production-grade automated test infrastructure** for power electronics. The system combines **precision hardware measurement, real-time digital control, embedded firmware, and database integration** to deliver traceable quality metrics for every manufactured unit.
+This project demonstrates a **complete production-grade automated test infrastructure** for validating diverse power supply topologies. The system performs **intelligent multi-point validation** with real-time parameter monitoring, database-backed traceability, and QR-code linked test history for every manufactured unit.
 
 ### 🎯 Core Challenge
-Development of a universal testing platform capable of:
+Design and implement a **universal testing platform** for heterogeneous power supply types:
 
-- **Multi-Topology Support:** 6+ distinct power supply topologies (CCCV, DCC, AC/DC, USB-C PD, etc.)
-- **Precision Measurement:** ±2% voltage/current accuracy with 16-sample averaging at 1MHz
-- **Real-Time Control:** 16kHz feedback loops with dynamic load adjustment via digital-to-analog conversion
-- **Automated Validation:** Intelligent test sequences with configurable tolerance thresholds
-- **Traceability:** Unique QR-code per test run enabling complete measurement history tracking
-- **Production Readiness:** MySQL database integration, LED monitoring, thermal characterization, and comprehensive logging
+- **6 Distinct Topologies:** AC/DC mains input (ACPD), multi-output supplies (HDR20), 48V Constant Current/Voltage (DCC48XX, CCCV48XX), USB Power Delivery (DC-PD), high-current 3A USB-C (USB-C-3A), Modbus-controlled multi-scenario testing (DCP48M), and standalone 15W offline validation (DIG-CCCV-15W)
+- **Precision Voltage & Current Measurement:** ±2% accuracy across entire operating range with real-time averaging and noise filtering
+- **Real-Time Status Monitoring:** Status LED verification throughout test execution to confirm device operation
+- **Intelligent Test Sequences:** Configurable multi-voltage testing, load profiling, connector rotation validation, and thermal characterization
+- **Complete Traceability:** UUID per test run with QR-code encoding enabling instant customer access to test history
+- **Database Integration:** MySQL backend storing all measurements, enabling batch analysis and quality trending
 
 ### ✅ Solution Delivered
-A complete automated testing ecosystem consisting of:
+A modular automated testing ecosystem consisting of:
 
-- **6 Specialized Testers:** Each optimized for specific PSU topology with tailored test profiles
-- **Embedded Firmware:** C-based control logic with state machines, interrupt handling, and DMA-based measurement acquisition
-- **Hardware Integration:** ADC/DAC precision measurement, color sensors (APDS9960), relay feedback, thermal monitoring
-- **Database Backend:** MySQL integration for persistent storage of all measurements and quality metrics
-- **Quality Dashboard:** Web-based interface with QR-code linked test reports showing detailed measurements
-- **Iterative Refinement:** Multiple hardware revisions demonstrating production-focused engineering approach
+- **6 Specialized Testers:** Each optimized for a specific PSU topology with topology-specific measurement hardware and test procedures
+- **Testers 1-5 (ACPD, HDR20, DCC48XX/CCCV48XX, DC-PD/USB-C, DCP48M):** Raspberry Pi controller with custom measurement head designed for each topology - providing GPIO control, I2C sensor coordination, and ADC/DAC measurement via dedicated interface boards
+- **Tester 6 (DIG-CCCV-15W):** Standalone system using Raspberry Pi Pico with integrated measurement capability - designed for portable field deployment without database connectivity
+- **Hardware Measurement Cores:** ADC/DAC precision measurement, color sensors for LED/RGB status verification, relay feedback for pass/fail indication, and thermal monitoring via sensor integration
+- **Database Backend:** MySQL persistent storage with UUID-linked QR-codes enabling per-unit traceability and historical measurement tracking
+- **Production Integration:** QR-code scanning interface connecting manufacturing test results to customer-facing web dashboard
+- **Iterative Hardware Refinement:** Multiple revisions optimizing connector interfaces, load application reliability, and thermal monitoring accuracy
 
 ---
 
 ## 🛠️ Technical Architecture
 
-### Hardware Stack (Per Tester)
-- **Measurement IC:** 16-bit ADC with programmable gain
-- **Control IC:** Programmable DAC for precise analog reference generation
-- **Sensor:** Color/proximity sensor for LED validation
-- **Interface:** I2C communication for sensor coordination
+### Tester 1-5: Raspberry Pi Controller Architecture
+- **Main Controller:** Raspberry Pi with Python/C hybrid application layer
+- **Custom Measurement Head:** Topology-specific interface board with:
+  - ADC/DAC for precision voltage and current measurement
+  - Color sensors (I2C) for LED/RGB status validation
+  - Relay contacts for DUT control and pass/fail indication
+  - GPIO expansion for topology-specific control signals
+- **Communication:** USB/UART to measurement head + Ethernet to database backend
+- **Topologies:** ACPD, HDR20, DCC48XX/CCCV48XX, DC-PD/USB-C-3A, DCP48M
+
+### Tester 6: Raspberry Pi Pico Standalone Architecture
+- **Microcontroller:** Raspberry Pi Pico (RP2040) with MicroPython/C firmware
+- **Integrated Measurement:** On-board ADC, GPIO control, I2C/UART interfaces
+- **Standalone Operation:** No database connectivity - results stored locally in flash memory
+- **UART Interface:** For configuration during test setup and result download for later database import
+- **Topology:** DIG-CCCV-15W portable field tester
+
+### Hardware Stack (Measurement Core - All Testers)
+- **ADC:** 12-16 bit precision for voltage/current measurement
+- **DAC:** Programmable reference generation for load control
+- **Sensor:** Color/proximity sensors for LED validation via I2C
+- **Interface:** I2C for sensor coordination, GPIO for relay/control signals
 - **Thermal:** Integrated temperature measurement via ADC channels
-- **Feedback:** Relay contact for pass/fail status output
+- **Feedback:** Relay contacts for pass/fail status and DUT control
 
 ### Software Stack
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
-| **Application** | C (Embedded) | Test orchestration, state machine, UI thread management |
-| **Driver** | Direct Hardware Interface | ADC/DAC control, I2C sensor communication, LED monitoring |
+| **Application** | Python/C (RPi) / MicroPython (Pico) | Test orchestration, parameter control, result logging |
+| **Driver** | GPIO/I2C/UART Libraries | Hardware interface abstraction, sensor communication |
 | **Measurement** | Sampling & Filtering | Voltage/current acquisition with averaging and calibration |
-| **Configuration** | INI Files | Mode-specific tolerances, test parameters, sensor limits |
-| **Database** | MySQL Backend | Persistent storage of all measurements and test results |
-| **Communication** | UART/USB | Status reporting and result upload to database |
+| **Configuration** | JSON/INI Files | Mode-specific tolerances, test parameters, sensor limits |
+| **Database** | MySQL Backend (Testers 1-5) | Persistent storage of all measurements and test results |
+| **Communication** | Ethernet/USB/UART | Status reporting and result upload to database (or local storage for Tester 6) |
 
 ---
 
@@ -303,10 +321,12 @@ A complete automated testing ecosystem consisting of:
 
 ## 🛠️ Created With
 
-* **[STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)** - Embedded firmware development for all testers
-* **[Python](https://www.python.org/)** - Web dashboard and database interface
-* **[MySQL](https://www.mysql.com/)** - Persistent storage of all test results and metrics
-* **[KiCad](https://www.kicad.org/)** - PCB design for custom test interface boards (where applicable)
+* **[Raspberry Pi](https://www.raspberrypi.org/)** - Main controller for Testers 1-5 with Python application layer
+* **[Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/)** - Microcontroller for Tester 6 (standalone DIG-CCCV-15W)
+* **[Python](https://www.python.org/)** - Test orchestration, measurement acquisition, database interface
+* **[MicroPython](https://micropython.org/)** - Embedded firmware for RP2040 on Tester 6
+* **[MySQL](https://www.mysql.com/)** - Persistent storage of all test results and metrics (Testers 1-5)
+* **[KiCad](https://www.kicad.org/)** - PCB design for custom measurement heads (topology-specific interface boards)
 * **[LTspice](https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html)** - Circuit simulation for precision measurement validation
 * **[Git](https://git-scm.com/)** - Version control for firmware and configuration management
 
@@ -318,13 +338,14 @@ This project demonstrates comprehensive expertise in:
 
 | Competency | Implementation |
 |---|---|
-| **Embedded Systems Design** | Multi-threaded firmware, state machines, modular control logic |
-| **Precision Measurement** | ADC/DAC calibration, noise filtering for ±2% accuracy |
-| **Hardware Integration** | I2C sensor coordination, interrupt-driven data acquisition |
+| **Single-Board Computer Integration** | Raspberry Pi controller architecture with custom measurement head coordination |
+| **Microcontroller Design** | RP2040-based standalone system with integrated measurement and local storage |
+| **Precision Measurement** | ADC/DAC calibration, noise filtering for ±2% accuracy across multiple platforms |
+| **Hardware Integration** | I2C sensor coordination, GPIO control, custom PCB interface boards |
 | **Database Design** | MySQL schema for efficient test result storage and historical tracking |
-| **Firmware Architecture** | Configuration management, modular test functions, error handling |
+| **Application Architecture** | Multi-topology testing framework with platform-specific implementations |
 | **Production Engineering** | Traceability systems, QR-code integration, scalable test infrastructure |
-| **Problem Solving** | Iterative testing, tolerance-based validation, comprehensive logging |
+| **Problem Solving** | Iterative testing, topology-specific validation, comprehensive logging |
 
 ---
 
