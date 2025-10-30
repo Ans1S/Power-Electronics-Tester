@@ -4,7 +4,7 @@
 
 <br />
 <div align="center">
-  <img src="Images/DCC48XX_CCCV48XX.png?raw=true" alt="Power Electronics Tester Suite" width="800" height="450">
+  <img src="Images/DCC48XX_CCCV48XX.png?raw=true" alt="Power Electronics Tester Suite" width="600" height="400">
   <p align="center">
     <strong>Comprehensive automated validation framework for 6+ power supply topologies with precision measurement and quality tracking</strong>
   </p>
@@ -40,51 +40,6 @@ A complete automated testing ecosystem consisting of:
 
 ## 🛠️ Technical Architecture
 
-### System Overview
-```
-┌──────────────────────────────────────────────────────────────┐
-│              Dashboard & Quality Tracking System             │
-│  ┌────────────────────────────────────────────────────────┐  │
-│  │  QR-Code Scanning │ Test History │ Metrics Analysis    │  │
-│  │  • Unique UUID    │ • Pass/Fail  │ • Voltage/Current   │  │
-│  │  • Timestamp      │ • Test Params│ • Compliance        │  │
-│  │  • Results Link   │ • All Logs   │ • Status Codes      │  │
-│  └────────────────────────────────────────────────────────┘  │
-└────────────────────┬─────────────────────────────────────────┘
-                     │ Database API
-         ┌───────────┴────────────┐
-         │                        │
-    ┌────▼──────┐          ┌──────▼───────┐
-    │   MySQL   │          │ Test Runner  │
-    │ Database  │          │  Application │
-    │           │          │              │
-    │ • Tests   │          │ • State Mach │
-    │ • Metrics │          │ • Config Mgr │
-    │ • Logs    │          │ • UI Thread  │
-    └───────────┘          └─────┬────────┘
-                                 │
-        ┌────────────────────────┼────────────────────────┐
-        │                        │                        │
-    ┌───▼──────┐        ┌────────▼────────┐      ┌───────▼────┐
-    │  ACPD    │        │ CCCV/DCC 48V    │      │   HDR20    │
-    │  Tester  │        │  Test Variants  │      │   Tester   │
-    │          │        │  (6 Modes)      │      │            │
-    └──────────┘        └─────────────────┘      └────────────┘
-        │                        │                        │
-    ┌───▼──────┐        ┌────────▼────────┐      ┌───────▼────┐
-    │  DC-PD & │        │   DCP48M        │      │   Config   │
-    │  USB-C   │        │   Tester        │      │ Management │
-    │  Tester  │        │                 │      │  (INI)     │
-    └──────────┘        └─────────────────┘      └────────────┘
-
-Hardware Layer (All Testers Share):
-├── ADC (12-bit) → Voltage/Current Measurement
-├── DAC → Programmable Current/Voltage Reference
-├── Color Sensor → RGB LED Detection & Status Verification
-├── Thermal Sensors → Temperature Monitoring via ADC
-└── Relay Feedback → Test Pass/Fail Output
-```
-
 ### Hardware Stack (Per Tester)
 - **Measurement IC:** 16-bit ADC with programmable gain
 - **Control IC:** Programmable DAC for precise analog reference generation
@@ -109,7 +64,7 @@ Hardware Layer (All Testers Share):
 
 ### **1️⃣ ACPD Tester** - AC/DC Power Delivery Validation
 <div align="center">
-  <img src="Images/ACPD.png?raw=true" alt="ACPD Tester" width="540" height="360">
+  <img src="Images/ACPD.png?raw=true" alt="ACPD Tester" width="600" height="400">
 </div>
 
 **Purpose:** Comprehensive testing of AC/DC power delivery topologies for universal mains compatibility.
@@ -131,11 +86,11 @@ Hardware Layer (All Testers Share):
   <table>
     <tr>
       <td align="center">
-        <img src="Images/HDR20.png?raw=true" alt="HDR20 Tester Unit" width="400" height="300">
+        <img src="Images/HDR20.png?raw=true" alt="HDR20 Tester Unit" width="300" height="200">
         <p><strong>Tester Unit</strong></p>
       </td>
       <td align="center">
-        <img src="Images/HDR20_dut.png?raw=true" alt="HDR20 Device Under Test" width="400" height="300">
+        <img src="Images/HDR20_dut.png?raw=true" alt="HDR20 Device Under Test" width="300" height="200">
         <p><strong>Device Under Test</strong></p>
       </td>
     </tr>
@@ -161,11 +116,11 @@ Hardware Layer (All Testers Share):
   <table>
     <tr>
       <td align="center">
-        <img src="Images/DCC48XX_CCCV48XX.png?raw=true" alt="DCC48XX & CCCV48XX Tester" width="400" height="300">
+        <img src="Images/DCC48XX_CCCV48XX.png?raw=true" alt="DCC48XX & CCCV48XX Tester" width="300" height="200">
         <p><strong>Tester Frontend</strong></p>
       </td>
       <td align="center">
-        <img src="Images/DCC48XX_CCCV48XX_dut.png?raw=true" alt="Device Under Test" width="400" height="300">
+        <img src="Images/DCC48XX_CCCV48XX_dut.png?raw=true" alt="Device Under Test" width="300" height="200">
         <p><strong>Device Under Test</strong></p>
       </td>
     </tr>
@@ -193,11 +148,11 @@ Hardware Layer (All Testers Share):
   <table>
     <tr>
       <td align="center">
-        <img src="Images/DP-PD_USB-C-3A.png?raw=true" alt="DC-PD & USB-C Tester" width="400" height="300">
+        <img src="Images/DP-PD_USB-C-3A.png?raw=true" alt="DC-PD & USB-C Tester" width="300" height="200">
         <p><strong>Tester Unit</strong></p>
       </td>
       <td align="center">
-        <img src="Images/USB-C-3A_dut_testing.png?raw=true" alt="USB-C Testing" width="400" height="300">
+        <img src="Images/USB-C-3A_dut_testing.png?raw=true" alt="USB-C Testing" width="300" height="200">
         <p><strong>Active Testing</strong></p>
       </td>
     </tr>
@@ -223,11 +178,11 @@ Hardware Layer (All Testers Share):
   <table>
     <tr>
       <td align="center">
-        <img src="Images/DCP48M_tester.png?raw=true" alt="DCP48M Tester Setup" width="400" height="300">
+        <img src="Images/DCP48M_tester.png?raw=true" alt="DCP48M Tester Setup" width="300" height="200">
         <p><strong>Tester Configuration</strong></p>
       </td>
       <td align="center">
-        <img src="Images/DCP48M_while_testing.png?raw=true" alt="DCP48M During Testing" width="400" height="300">
+        <img src="Images/DCP48M_while_testing.png?raw=true" alt="DCP48M During Testing" width="300" height="200">
         <p><strong>Testing in Progress</strong></p>
       </td>
     </tr>
