@@ -22,7 +22,7 @@ Design and implement a **universal testing platform** for heterogeneous power su
 - **6 Distinct Topologies:** AC/DC mains input (ACPD), multi-output supplies (HDR20), 48V Constant Current/Voltage (DCC48XX, CCCV48XX), USB Power Delivery (DC-PD), high-current 3A USB-C (USB-C-3A), Modbus-controlled multi-scenario testing (DCP48M), and standalone 15W offline validation (DIG-CCCV-15W)
 - **Precision Voltage & Current Measurement:** ±2% accuracy across entire operating range with real-time averaging and noise filtering
 - **Real-Time Status Monitoring:** Status LED verification throughout test execution to confirm device operation
-- **Intelligent Test Sequences:** Configurable multi-voltage testing, load profiling, connector rotation validation, and thermal characterization
+- **Intelligent Test Sequences:** Configurable multi-voltage testing, load profiling and connector rotation validation
 - **Complete Traceability:** UUID per test run with QR-code encoding enabling instant customer access to test history
 - **Database Integration:** MySQL backend storing all measurements, enabling batch analysis and quality trending
 
