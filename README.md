@@ -126,7 +126,7 @@ A modular automated testing ecosystem consisting of:
 - **Channel Independence:** Each output voltage measured independently with precision measurement
 - **Status LED Monitoring:** Verifies status LED remains active throughout entire test execution
 
-**Key Metrics:** Per-channel accuracy (±2%), cross-regulation, thermal steady-state, cascading protection timing.
+**Key Metrics:** Per-channel accuracy (±2%), cross-regulation, cascading protection timing.
 
 ---
 
@@ -157,7 +157,7 @@ A modular automated testing ecosystem consisting of:
 - **Status LED Monitoring:** Verifies status LED remains active throughout entire test execution
 - **Full-Load Testing:** All CC/CV variants tested under full-load conditions with continuous verification
 
-**Key Metrics:** CC/CV accuracy (±1.8%), mode transition time, thermal stability, LED indication reliability.
+**Key Metrics:** CC/CV accuracy (±1.8%), mode transition time, LED indication reliability.
 
 ---
 
@@ -215,10 +215,9 @@ A modular automated testing ecosystem consisting of:
 - **Multi-Voltage Testing:** Sequential testing at different voltages with full-load current applied to each
 - **Scenario Execution:** Predefined test scenario loaded and executed with real-time parameter adjustment
 - **Load Application:** Programmable electronic load applies specified current profile matching DUT characteristics
-- **Status LED Monitoring:** Verifies status LED remains active throughout entire test execution
 - **Measurement Logging:** All measurements streamed to database with per-second granularity
 
-**Key Metrics:** Modbus response time, multi-voltage accuracy (±1.8%), thermal stability, efficiency measurement, extended reliability.
+**Key Metrics:** Modbus response time, multi-voltage accuracy (±1.8%), extended reliability.
 
 ---
 
